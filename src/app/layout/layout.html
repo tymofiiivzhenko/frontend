@@ -1,0 +1,16 @@
+<header>
+  <h1>{{ appTitle }}</h1>
+  <nav>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    |
+    <a routerLink="/about" routerLinkActive="active">About</a>
+  </nav>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer>
+  <p>© 2025 {{ appTitle }}</p>
+</footer>
