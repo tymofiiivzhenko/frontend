@@ -9,5 +9,5 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './layout.css'
 })
 export class LayoutComponent {
-  appTitle = 'My Angular App';
+  appTitle = 'Tymofii`s Website';
 }
