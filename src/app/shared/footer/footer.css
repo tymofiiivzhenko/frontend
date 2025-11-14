@@ -1,0 +1,8 @@
+footer {
+  background-color: #ff7a00;
+  color: #fff;
+  padding-block: 0.75rem;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+}
