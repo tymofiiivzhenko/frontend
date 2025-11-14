@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import "@fontsource/montserrat/400.css";
+@import "@fontsource/montserrat/400-italic.css";
+@import "@fontsource/montserrat/700.css";
+@import "@fontsource/montserrat/700-italic.css";
+@import "@fontsource/montserrat/300-italic.css";
+
+:root {
+  --font-sans: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+html, body {
+  font-family: var(--font-sans);
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
