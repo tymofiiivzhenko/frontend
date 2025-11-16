@@ -9,14 +9,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     <header>
       <h1>{{ title }}</h1>
       <nav>
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Головна</a>
         |
-        <a routerLink="/about" routerLinkActive="active">About</a>
+        <a routerLink="/about" routerLinkActive="active">Про нас</a>
       </nav>
     </header>
   `,
   styleUrls: ['./header.css']
 })
 export class HeaderComponent {
-  title = 'My Angular App';
+  title = 'Корисні поради для повсякденного життя';
 }
