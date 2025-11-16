@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <footer>
-      <p>© {{ year }} My Angular App</p>
+      <p>© {{ year }} Корисні поради для повсякденного життя</p>
     </footer>
   `,
   styleUrls: ['./footer.css']

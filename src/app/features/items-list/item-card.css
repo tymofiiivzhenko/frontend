@@ -1,0 +1,35 @@
+.item-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #fff;
+}
+
+.item-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+}
+
+/* Align all title bottoms; tweak min-height for your font/size */
+.item-card__head {
+  min-height: 3.5rem;      /* ≈ two lines of h3; raise if titles wrap more */
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.item-card__title { margin: 0; line-height: 1.25; }
+
+.item-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item-card__desc { margin: 0; }
