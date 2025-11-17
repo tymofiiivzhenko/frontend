@@ -5,4 +5,7 @@ export interface Item {
   price?: number;
   imageUrl?: string;
   tags?: string[];
+
+  featured?: boolean;
+  level?: 'low' | 'medium' | 'high';
 }

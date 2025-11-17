@@ -9,7 +9,10 @@ import { ItemCardComponent } from '../items-list/item-card';
   imports: [CommonModule, ItemCardComponent],
   template: `
     <section class="items-list">
-      <app-item-card *ngFor="let it of items" [item]="it"></app-item-card>
+      <app-item-card
+        *ngFor="let it of items; trackBy: trackById"
+        [item]="it">
+      </app-item-card>
     </section>
   `,
   styleUrls: ['./items-list.css']
@@ -19,20 +22,28 @@ export class ItemsListComponent {
     {
       id: 1,
       title: 'Плануйте день у три кроки - навіть малі кроки рахуються',
-      description: 'випишіть 3 пріоритети, розбийте їх на маленькі підзадачі, і закрийте день коротким підсумком',
-      imageUrl: 'assets/img/plan.png'
+      description: 'випишіть 3 пріоритети, розбийте їх на маленькі підзадачі, і закінчіть день коротким підсумком',
+      imageUrl: 'assets/img/plan.png',
+      featured: false,
+      level: 'low'
     },
     {
       id: 2,
-      title: 'Пийте достатньо води і тримайте пляшку під рукою',
-      description: 'починайте ранок зі склянки води й додавайте скибку лимона чи огірка, якщо так смачніше',
-      imageUrl: 'assets/img/water.png'
+      title: 'Пийте достатньо води і завжди тримайте пляшку під рукою',
+      description: 'починайте ранок зі склянки води й за бажанням додайте скибку лимона чи огірка, якщо хочете додати смаку',
+      imageUrl: 'assets/img/water.png',
+      featured: true,
+      level: 'high'
     },
     {
       id: 3,
       title: 'Рухайтеся щонайменше 20–30 хвилин на день',
       description: 'коротка прогулянка, розтяжка або зарядка між справами зменшують стрес і підвищують енергію',
-      imageUrl: 'assets/img/walk.png'
+      imageUrl: 'assets/img/walk.png',
+      featured: true,
+      level: 'high'
     }
   ];
+
+  trackById = (_: number, it: Item) => it.id;
 }
