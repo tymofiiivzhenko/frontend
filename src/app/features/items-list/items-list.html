@@ -1,0 +1,16 @@
+<section class="items-controls">
+  <input
+    type="text"
+    placeholder="Пошук..."
+    [(ngModel)]="query"
+    (ngModelChange)="onQueryChange()"
+  />
+</section>
+
+<section class="items-list">
+  <app-item-card
+    *ngFor="let it of filtered; trackBy: trackById"
+    [item]="it"
+    (selected)="onSelected($event)">
+  </app-item-card>
+</section>

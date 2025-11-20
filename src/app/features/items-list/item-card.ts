@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Item } from '../../shared/models/item';
 
@@ -6,6 +6,7 @@ import { Item } from '../../shared/models/item';
   selector: 'app-item-card',
   standalone: true,
   imports: [CommonModule],
+  templateUrl: './item-card.html',
   template: `
     <article class="item-card"
              [ngClass]="{
@@ -37,4 +38,11 @@ import { Item } from '../../shared/models/item';
 })
 export class ItemCardComponent {
   @Input() item!: Item;
+  @Output() selected = new EventEmitter<Item>();
+
+  select() {
+    if (this.item) {
+      this.selected.emit(this.item);
+    }
+  }
 }

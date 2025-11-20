@@ -1,3 +1,11 @@
+.items-controls { margin-bottom: 1rem; }
+.items-controls input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: min(420px, 100%);
+}
+
 .items-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));

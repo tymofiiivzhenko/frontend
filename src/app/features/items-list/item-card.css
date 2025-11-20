@@ -40,3 +40,14 @@
 
 .item-card__body { display: flex; flex-direction: column; gap: 0.5rem; }
 .item-card__desc { margin: 0; }
+
+.item-card__actions { margin-top: 0.5rem; }
+.item-card__actions button {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ff7a00;
+  background: #fff5ea;
+  color: #c45a00;
+  cursor: pointer;
+}
+.item-card__actions button:hover { background: #ffead6; }
