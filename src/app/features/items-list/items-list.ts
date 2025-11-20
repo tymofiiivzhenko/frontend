@@ -9,6 +9,15 @@ import { ItemCardComponent } from '../items-list/item-card';
   standalone: true,
   imports: [CommonModule, FormsModule, ItemCardComponent],
   templateUrl: './items-list.html',
+  imports: [CommonModule, ItemCardComponent],
+  template: `
+    <section class="items-list">
+      <app-item-card
+        *ngFor="let it of items; trackBy: trackById"
+        [item]="it">
+      </app-item-card>
+    </section>
+  `,
   styleUrls: ['./items-list.css']
 })
 export class ItemsListComponent {
@@ -22,6 +31,8 @@ export class ItemsListComponent {
       imageUrl: 'assets/img/plan.png',
       featured: true,
       level: 'high'
+      featured: false,
+      level: 'low'
     },
     {
       id: 2,
@@ -30,6 +41,8 @@ export class ItemsListComponent {
       imageUrl: 'assets/img/water.png',
       featured: false,
       level: 'medium'
+      featured: true,
+      level: 'high'
     },
     {
       id: 3,
@@ -56,6 +69,10 @@ export class ItemsListComponent {
   onSelected(it: Item) {
     console.log('Обрано елемент:', it);
   }
+
+      level: 'high'
+    }
+  ];
 
   trackById = (_: number, it: Item) => it.id;
 }
