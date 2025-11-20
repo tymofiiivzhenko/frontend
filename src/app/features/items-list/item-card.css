@@ -34,7 +34,6 @@
   border-radius: 4px;
 }
 
-/* Динамічні рівні через [ngClass] */
 .lvl-low    { background-image: linear-gradient(0deg, #f6fff6 0, transparent 70%); }
 .lvl-medium { background-image: linear-gradient(0deg, #fffdf2 0, transparent 70%); }
 .lvl-high   { background-image: linear-gradient(0deg, #fff5f5 0, transparent 70%); }
