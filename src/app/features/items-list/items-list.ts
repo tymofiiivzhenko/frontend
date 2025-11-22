@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 
 import { Item } from '../../shared/models/item';
 import { ItemCardComponent } from '../items-list/item-card';
@@ -13,26 +14,27 @@ import { DataService } from '../../shared/services/data.service';
   templateUrl: './items-list.html',
   styleUrls: ['./items-list.css']
 })
-export class ItemsListComponent implements OnInit {
+export class ItemsListComponent implements OnInit, OnDestroy {
   query = '';
   items: Item[] = [];
   filtered: Item[] = [];
 
+  private readonly destroy$ = new Subject<void>();
+
   constructor(private readonly data: DataService) {}
 
   ngOnInit(): void {
-    this.items = this.data.getItems();
-    this.filtered = this.items.slice();
+    this.data.getItems()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(list => {
+        this.items = list;
+        this.filtered = list;
+      });
+
   }
 
   onQueryChange(): void {
-    const q = this.query.trim().toLowerCase();
-    this.filtered = !q
-      ? this.items.slice()
-      : this.items.filter(it =>
-          (it.title?.toLowerCase().includes(q)) ||
-          (it.description?.toLowerCase().includes(q))
-        );
+    this.data.applyFilter(this.query);
   }
 
   onSelected(it: Item): void {
@@ -40,4 +42,9 @@ export class ItemsListComponent implements OnInit {
   }
 
   trackById = (_: number, it: Item) => it.id;
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }
