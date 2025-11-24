@@ -4,12 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-footer',
   standalone: true,
   template: `
-    <footer>
-      <p>© {{ year }} Корисні поради для повсякденного життя</p>
+    <footer class="footer">
+      © 2025 Корисні поради для повсякденного життя
     </footer>
   `,
   styleUrls: ['./footer.css']
 })
-export class FooterComponent {
-  year = new Date().getFullYear();
-}
+export class FooterComponent {}

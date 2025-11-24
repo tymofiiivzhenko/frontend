@@ -1,0 +1,30 @@
+.item-detail-wrapper {
+  padding: 36px 0 36px 0;
+}
+
+.item-detail-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  letter-spacing: .5px;
+}
+
+.item-detail-content {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+.item-detail-img {
+  width: 320px;
+  max-width: 90vw;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+
+.item-detail-desc {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  max-width: 650px;
+}

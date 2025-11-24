@@ -19,7 +19,7 @@
     <p class="item-card__desc">{{ item?.description }}</p>
 
     <div class="item-card__actions">
-      <button type="button" (click)="select()">Детальніше</button>
+      <a [routerLink]="['/items', item?.id]" class="details-link">Детальніше</a>
     </div>
   </div>
 </article>

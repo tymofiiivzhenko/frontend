@@ -1,0 +1,32 @@
+<div class="item-details-container" *ngIf="item as it">
+  <div class="item-details-image-wrapper">
+    <img
+      [src]="it.imageUrl"
+      [alt]="it.title"
+      class="item-detail-img"
+    />
+  </div>
+
+  <div class="item-details-info">
+    <h2 class="item-details-title">
+      {{ it.title }}
+    </h2>
+
+    <p class="item-details-description">
+      {{ it.description }}
+    </p>
+
+    <div class="item-details-meta">
+      <span class="item-details-price">
+        {{ it.price | currency : 'USD' : 'symbol' : '1.2-2' }}
+      </span>
+
+    <div class="item-details-extra" *ngIf="it.extraInfo">
+      {{ it.extraInfo }}
+    </div>
+  </div>
+</div>
+
+<div class="item-details-empty" *ngIf="!item">
+  <p>Елемент не знайдено.</p>
+</div>
