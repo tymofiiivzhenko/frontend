@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterModule],
   template: `
-    <header>
-      <h1>{{ title }}</h1>
-      <nav>
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Головна</a>
+    <header class="header">
+      <h1 class="app-title">
+        Корисні поради для повсякденного життя
+      </h1>
+      <nav class="main-nav">
+        <a routerLink="/items" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Головна</a>
         |
         <a routerLink="/about" routerLinkActive="active">Про нас</a>
       </nav>
@@ -17,6 +19,4 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   `,
   styleUrls: ['./header.css']
 })
-export class HeaderComponent {
-  title = 'Корисні поради для повсякденного життя';
-}
+export class HeaderComponent {}
