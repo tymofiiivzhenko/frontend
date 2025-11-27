@@ -1,33 +1,46 @@
+:host {
+  display: block;
+  background-color: #a3bf74;
+}
+
 .header {
-  background: #ff7a00;
-  padding: 38px 0 24px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header h1 {
   margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
 }
-.app-title {
-  margin: 0 0 8px 0;
-  padding-left: 48px;
-  color: #fff;
-  font-size: 2.6rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  line-height: 1.1;
+
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.main-nav {
-  padding-left: 48px;
-  margin-top: 0;
+
+.header nav .separator {
+  color: #ffffff;
+  font-size: 16px;
+  user-select: none;
 }
-.main-nav a {
-  color: #fff !important;
-  text-decoration: underline;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-right: 10px;
-  font-style: normal;
-}
-.main-nav a.active {
+
+.header nav a {
+  color: #ffffff;
   text-decoration: none;
-  border-bottom: 2.5px solid #fff;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+  font-weight: 500;
 }
-.main-nav a:last-child {
-  margin-right: 0;
+
+.header nav a:hover,
+.header nav a.active {
+  border-bottom-color: #ffffff;
 }
