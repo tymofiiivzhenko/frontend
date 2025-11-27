@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { Observable, map } from 'rxjs';
-
 import { Item } from '../../shared/models/item';
 import { ItemCardComponent } from '../items-list/item-card';
 import { DataService } from '../../shared/services/data.service';
@@ -10,13 +10,12 @@ import { DataService } from '../../shared/services/data.service';
 @Component({
   selector: 'app-items-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, ItemCardComponent],
+  imports: [CommonModule, FormsModule, RouterModule, ItemCardComponent],
   templateUrl: './items-list.html',
   styleUrls: ['./items-list.css']
 })
 export class ItemsListComponent implements OnInit {
   query = '';
-
   items$!: Observable<Item[]>;
   filtered$!: Observable<Item[]>;
 
@@ -40,10 +39,6 @@ export class ItemsListComponent implements OnInit {
             )
       )
     );
-  }
-
-  onSelected(it: Item): void {
-    console.log('Обрано елемент:', it);
   }
 
   trackById = (_: number, it: Item) => it.id;

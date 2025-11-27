@@ -1,26 +1,25 @@
-<div class="items-list">
+<div class="items-list-container">
   <div class="items-list-header">
     <h2>Поради дня:</h2>
+    <a routerLink="/add-item" class="btn-add">
+      <span>+</span> Додати пораду
+    </a>
+  </div>
 
-    <input
-      type="text"
-      class="items-list-search"
-      [(ngModel)]="query"
-      (ngModelChange)="onQueryChange()"
+  <div class="search-container">
+    <input 
+      type="text" 
       placeholder="Пошук за назвою або описом..."
+      [(ngModel)]="query"
+      (input)="onQueryChange()"
+      class="search-input"
     />
   </div>
 
   <div class="items-grid">
-    <app-item-card
-      *ngFor="let it of (filtered$ | async); trackBy: trackById"
-      [item]="it"
-      (selected)="onSelected($event)"
-    >
+    <app-item-card 
+      *ngFor="let item of filtered$ | async; trackBy: trackById"
+      [item]="item">
     </app-item-card>
-  </div>
-
-  <div class="items-list-empty" *ngIf="(filtered$ | async)?.length === 0">
-    Немає елементів, що відповідають запиту.
   </div>
 </div>

@@ -1,0 +1,74 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Редагувати пораду' : 'Додати нову пораду' }}</h2>
+
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="title">Назва:</label>
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        class="form-input"
+        [class.is-invalid]="title?.invalid && title?.touched"
+        placeholder="Введіть назву поради"
+      />
+      <div *ngIf="title?.invalid && title?.touched" class="error-message">
+        <span *ngIf="title?.errors?.['required']">Назва обов'язкова</span>
+        <span *ngIf="title?.errors?.['minlength']">Мінімум 3 символи</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Опис:</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-textarea"
+        [class.is-invalid]="description?.invalid && description?.touched"
+        placeholder="Введіть опис поради"
+        rows="5"
+      ></textarea>
+      <div *ngIf="description?.invalid && description?.touched" class="error-message">
+        <span *ngIf="description?.errors?.['required']">Опис обов'язковий</span>
+        <span *ngIf="description?.errors?.['minlength']">Мінімум 10 символів</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imageUrl">URL Зображення:</label>
+      <input
+        type="text"
+        id="imageUrl"
+        formControlName="imageUrl"
+        class="form-input"
+        [class.is-invalid]="imageUrl?.invalid && imageUrl?.touched"
+        placeholder="Введіть URL зображення"
+      />
+      <div *ngIf="imageUrl?.invalid && imageUrl?.touched" class="error-message">
+        <span *ngIf="imageUrl?.errors?.['required']">URL обов'язковий</span>
+      </div>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <label for="featured">
+        <input
+          type="checkbox"
+          id="featured"
+          formControlName="featured"
+          class="form-checkbox"
+        />
+        Рекомендована пораду
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        {{ isEditMode ? 'Оновити' : 'Додати' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">
+        Скасувати
+      </button>
+    </div>
+  </form>
+</div>
