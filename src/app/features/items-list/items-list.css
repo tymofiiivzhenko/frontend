@@ -1,13 +1,46 @@
-.items-controls { margin-bottom: 1rem; }
-.items-controls input {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  width: min(420px, 100%);
+.items-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 16px 120px; /* Зменшили верхній відступ з 32px до 16px */
 }
 
-.items-list {
+.items-list-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.items-list-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.items-list-search {
+  max-width: 320px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+.items-list-search:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.2);
+}
+
+/* Грід для карток: зліва направо, кілька в ряд */
+.items-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.items-list-empty {
+  margin-top: 24px;
+  font-style: italic;
+  color: #666;
+  text-align: center;
 }

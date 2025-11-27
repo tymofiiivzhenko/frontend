@@ -1,16 +1,26 @@
-<section class="items-controls">
-  <input
-    type="text"
-    placeholder="Пошук..."
-    [(ngModel)]="query"
-    (ngModelChange)="onQueryChange()"
-  />
-</section>
+<div class="items-list">
+  <div class="items-list-header">
+    <h2>Поради дня:</h2>
 
-<section class="items-list">
-  <app-item-card
-    *ngFor="let it of filtered; trackBy: trackById"
-    [item]="it"
-    (selected)="onSelected($event)">
-  </app-item-card>
-</section>
+    <input
+      type="text"
+      class="items-list-search"
+      [(ngModel)]="query"
+      (ngModelChange)="onQueryChange()"
+      placeholder="Пошук за назвою або описом..."
+    />
+  </div>
+
+  <div class="items-grid">
+    <app-item-card
+      *ngFor="let it of (filtered$ | async); trackBy: trackById"
+      [item]="it"
+      (selected)="onSelected($event)"
+    >
+    </app-item-card>
+  </div>
+
+  <div class="items-list-empty" *ngIf="(filtered$ | async)?.length === 0">
+    Немає елементів, що відповідають запиту.
+  </div>
+</div>

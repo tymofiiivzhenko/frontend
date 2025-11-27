@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+
 import { Item } from '../../shared/models/item';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
-  private readonly items: Item[] = [
+  private readonly initialItems: Item[] = [
     {
       id: 1,
       title: 'Плануйте день у три кроки - навіть малі кроки рахуються',
@@ -30,11 +32,37 @@ export class DataService {
     }
   ];
 
+  private readonly itemsSubject = new BehaviorSubject<Item[]>(this.initialItems);
+  readonly items$: Observable<Item[]> = this.itemsSubject.asObservable();
+
+  constructor() {}
+
   getItems(): Item[] {
-    return this.items.slice();
+    return this.itemsSubject.getValue().slice();
+  }
+
+  getItems$(): Observable<Item[]> {
+    return this.items$;
   }
 
   getItemById(id: number): Item | undefined {
-    return this.items.find(it => it.id === id);
+    return this.itemsSubject.getValue().find(it => it.id === id);
+  }
+
+  addItem(item: Item): void {
+    const current = this.itemsSubject.getValue();
+    this.itemsSubject.next([...current, item]);
+  }
+
+  updateItem(updated: Item): void {
+    const current = this.itemsSubject.getValue();
+    const next = current.map(it => (it.id === updated.id ? updated : it));
+    this.itemsSubject.next(next);
+  }
+
+  removeItem(id: number): void {
+    const current = this.itemsSubject.getValue();
+    const next = current.filter(it => it.id !== id);
+    this.itemsSubject.next(next);
   }
 }

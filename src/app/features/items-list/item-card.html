@@ -1,25 +1,47 @@
-<article class="item-card"
-         [ngClass]="{
-           'lvl-low': item?.level === 'low',
-           'lvl-medium': item?.level === 'medium',
-           'lvl-high': item?.level === 'high'
-         }"
-         [ngStyle]="item?.featured ? { borderColor: '#ff7a00' } : null">
-
-  <img *ngIf="item?.imageUrl" [src]="item!.imageUrl" [alt]="item?.title">
-
-  <div class="item-card__head">
-    <h3 class="item-card__title">
-      {{ item?.title }}
-      <span *ngIf="item?.featured" class="badge">Рекомендовано</span>
-    </h3>
+<div
+  class="item-card"
+  [appHoverHighlight]="'#f5f9ff'"
+  [appHoverHighlightBorder]="'1px solid #1e88e5'"
+>
+  <div class="item-card-image-wrapper" *ngIf="item.imageUrl">
+    <img
+      class="item-card-image"
+      [src]="item.imageUrl"
+      [alt]="item.title"
+    />
   </div>
 
-  <div class="item-card__body">
-    <p class="item-card__desc">{{ item?.description }}</p>
+  <div class="item-card-content">
+    <h3 class="item-card-title">
+      {{ item.title }}
+    </h3>
 
-    <div class="item-card__actions">
-      <a [routerLink]="['/items', item?.id]" class="details-link">Детальніше</a>
+    <span class="item-card-badge" *ngIf="item.featured">
+      Рекомендовано
+    </span>
+
+    <p class="item-card-description">
+      {{ item.description | truncateDescription:120 }}
+    </p>
+
+    <div class="item-card-meta">
+      <span class="item-card-price" *ngIf="item.price != null">
+        {{ item.price | currency : 'USD' : 'symbol' : '1.2-2' }}
+      </span>
+
+      <span class="item-card-tags" *ngIf="item.tags?.length">
+        {{ item.tags!.join(', ') }}
+      </span>
     </div>
   </div>
-</article>
+
+  <div class="item-card-actions">
+    <a
+      class="item-card-link"
+      [routerLink]="['/items', item.id]"
+      (click)="select()"
+    >
+      Детальніше
+    </a>
+  </div>
+</div>
