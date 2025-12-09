@@ -22,6 +22,8 @@ export class ItemsListComponent implements OnInit {
   constructor(private readonly data: DataService) {}
 
   ngOnInit(): void {
+    this.data.getItems().subscribe();
+
     this.items$ = this.data.items$;
     this.filtered$ = this.items$;
   }
