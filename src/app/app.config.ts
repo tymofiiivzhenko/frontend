@@ -6,12 +6,13 @@ import {
   withInterceptors
 } from '@angular/common/http';
 import { apiBaseUrlInterceptor } from './shared/interceptors/api-base-url.interceptor';
+import { authTokenInterceptor } from './shared/interceptors/auth-token.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([apiBaseUrlInterceptor])
+      withInterceptors([apiBaseUrlInterceptor, authTokenInterceptor])
     )
   ]
 };

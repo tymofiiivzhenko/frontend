@@ -1,12 +1,62 @@
 <header class="header">
-  <h1>Корисні поради для повсякденного життя</h1>
+  <h1 class="app-title">
+    Корисні поради для повсякденного життя
+  </h1>
   
-  <nav>
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+  <nav class="main-nav">
+    <a 
+      routerLink="/" 
+      routerLinkActive="active" 
+      [routerLinkActiveOptions]="{exact: true}"
+    >
       Головна
     </a>
-    <a routerLink="/about" routerLinkActive="active">
+    <span class="separator">|</span>
+    <a 
+      routerLink="/about" 
+      routerLinkActive="active"
+    >
       Про нас
     </a>
+
+    <ng-container *ngIf="(authService.isLoggedIn$ | async)">
+      <span class="separator">|</span>
+      <a 
+        routerLink="/add-item" 
+        routerLinkActive="active"
+      >
+        + Додати
+      </a>
+    </ng-container>
+
+    <span class="separator">|</span>
+
+    <ng-container *ngIf="(authService.isLoggedIn$ | async) as isLoggedIn; else notLoggedIn">
+      <span class="user-email">{{ (authService.currentUser$ | async)?.email }}</span>
+      <span class="separator">|</span>
+      <button 
+        class="logout-btn" 
+        (click)="onLogout()"
+        type="button"
+      >
+        Вихід
+      </button>
+    </ng-container>
+
+    <ng-template #notLoggedIn>
+      <a 
+        routerLink="/login" 
+        routerLinkActive="active"
+      >
+        Вхід
+      </a>
+      <span class="separator">|</span>
+      <a 
+        routerLink="/register" 
+        routerLinkActive="active"
+      >
+        Реєстрація
+      </a>
+    </ng-template>
   </nav>
 </header>

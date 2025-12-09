@@ -6,41 +6,127 @@
 .header {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 32px 16px 16px 16px;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.header h1 {
+.app-title {
   margin: 0;
   font-size: 28px;
   font-weight: 700;
   color: #ffffff;
+  letter-spacing: -0.01em;
 }
 
-.header nav {
+.main-nav {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 14px;
 }
 
-.header nav .separator {
+.main-nav a,
+.logout-btn {
   color: #ffffff;
-  font-size: 16px;
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  font-weight: 500;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.main-nav a:hover,
+.main-nav a.active,
+.logout-btn:hover {
+  border-bottom-color: #ffffff;
+}
+
+.main-nav .separator {
+  color: #ffffff;
+  margin: 0 4px;
   user-select: none;
 }
 
-.header nav a {
+.user-email {
   color: #ffffff;
-  text-decoration: none;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease;
   font-weight: 500;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
-.header nav a:hover,
-.header nav a.active {
-  border-bottom-color: #ffffff;
+.logout-btn {
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.logout-btn:active {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .app-title {
+    font-size: 22px;
+  }
+
+  .main-nav {
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .main-nav a,
+  .logout-btn {
+    font-size: 12px;
+    padding: 2px 0;
+  }
+
+  .user-email {
+    font-size: 11px;
+  }
+
+  .main-nav .separator {
+    font-size: 12px;
+    margin: 0 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .app-title {
+    font-size: 18px;
+  }
+
+  .main-nav {
+    font-size: 11px;
+    gap: 2px;
+  }
+
+  .main-nav a,
+  .logout-btn {
+    font-size: 11px;
+  }
+
+  .user-email {
+    font-size: 10px;
+  }
+
+  .main-nav .separator {
+    margin: 0 2px;
+  }
 }

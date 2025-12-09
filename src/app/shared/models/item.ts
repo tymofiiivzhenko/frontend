@@ -9,4 +9,6 @@ export interface Item {
   featured?: boolean;
   level?: 'low' | 'medium' | 'high';
     extraInfo?: string;
+  
+  userId?: number;
 }

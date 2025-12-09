@@ -1,0 +1,85 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Реєстрація</h2>
+    
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Ім'я користувача</label>
+        <input
+          id="username"
+          type="text"
+          class="form-input"
+          [class.is-invalid]="username?.invalid && username?.touched"
+          formControlName="username"
+          placeholder="Мінімум 3 символи"
+        />
+        <div *ngIf="username?.invalid && username?.touched" class="error-message">
+          <span *ngIf="username?.errors?.['required']">Поле обов'язкове</span>
+          <span *ngIf="username?.errors?.['minlength']">Мінімум 3 символи</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Електронна пошта</label>
+        <input
+          id="email"
+          type="email"
+          class="form-input"
+          [class.is-invalid]="email?.invalid && email?.touched"
+          formControlName="email"
+          placeholder="example@mail.com"
+        />
+        <div *ngIf="email?.invalid && email?.touched" class="error-message">
+          <span *ngIf="email?.errors?.['required']">Поле обов'язкове</span>
+          <span *ngIf="email?.errors?.['email']">Некоректна електронна пошта</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input
+          id="password"
+          type="password"
+          class="form-input"
+          [class.is-invalid]="password?.invalid && password?.touched"
+          formControlName="password"
+          placeholder="Мінімум 6 символів"
+        />
+        <div *ngIf="password?.invalid && password?.touched" class="error-message">
+          <span *ngIf="password?.errors?.['required']">Поле обов'язкове</span>
+          <span *ngIf="password?.errors?.['minlength']">Мінімум 6 символів</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Підтвердити пароль</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          class="form-input"
+          [class.is-invalid]="confirmPassword?.invalid && confirmPassword?.touched"
+          formControlName="confirmPassword"
+          placeholder="Повторіть пароль"
+        />
+        <div *ngIf="confirmPassword?.invalid && confirmPassword?.touched" class="error-message">
+          <span *ngIf="confirmPassword?.errors?.['required']">Поле обов'язкове</span>
+        </div>
+        <div *ngIf="registerForm.errors?.['passwordMismatch'] && registerForm.touched" class="error-message">
+          <span>Паролі не збігаються</span>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="isLoading || registerForm.invalid"
+      >
+        {{ isLoading ? 'Завантаження...' : 'Зареєструватися' }}
+      </button>
+    </form>
+
+    <p class="auth-link">
+      Вже маєте обліковий запис? <a routerLink="/login">Увійти</a>
+    </p>
+  </div>
+</div>

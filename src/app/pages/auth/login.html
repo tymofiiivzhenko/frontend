@@ -1,0 +1,51 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Вхід до системи</h2>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Електронна пошта</label>
+        <input
+          id="email"
+          type="email"
+          class="form-input"
+          [class.is-invalid]="email?.invalid && email?.touched"
+          formControlName="email"
+          placeholder="example@mail.com"
+        />
+        <div *ngIf="email?.invalid && email?.touched" class="error-message">
+          <span *ngIf="email?.errors?.['required']">Поле обов'язкове</span>
+          <span *ngIf="email?.errors?.['email']">Некоректна електронна пошта</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input
+          id="password"
+          type="password"
+          class="form-input"
+          [class.is-invalid]="password?.invalid && password?.touched"
+          formControlName="password"
+          placeholder="Мінімум 6 символів"
+        />
+        <div *ngIf="password?.invalid && password?.touched" class="error-message">
+          <span *ngIf="password?.errors?.['required']">Поле обов'язкове</span>
+          <span *ngIf="password?.errors?.['minlength']">Мінімум 6 символів</span>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="isLoading || loginForm.invalid"
+      >
+        {{ isLoading ? 'Завантаження...' : 'Увійти' }}
+      </button>
+    </form>
+
+    <p class="auth-link">
+      Немаєте облікового запису? <a routerLink="/register">Зареєструватися</a>
+    </p>
+  </div>
+</div>
