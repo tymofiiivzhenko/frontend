@@ -1,5 +1,5 @@
 <div class="item-details-container">
-  <div class="item-detail-wrapper" *ngIf="item">
+  <div class="item-detail-wrapper" *ngIf="item$ | async as item">
     <h1 class="item-detail-title">{{ item.title }}</h1>
 
     <div class="item-detail-content">

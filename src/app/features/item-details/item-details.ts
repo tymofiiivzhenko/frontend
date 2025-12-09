@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { DataService } from '../../shared/services/data.service';
 import { Item } from '../../shared/models/item';
 
@@ -12,7 +13,7 @@ import { Item } from '../../shared/models/item';
   styleUrls: ['./item-details.css']
 })
 export class ItemDetailsComponent implements OnInit {
-  item: Item | undefined;
+  item$!: Observable<Item>;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +23,7 @@ export class ItemDetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.item = this.dataService.getItemById(parseInt(id, 10));
+      this.item$ = this.dataService.getItemById(parseInt(id, 10));
     }
   }
 }

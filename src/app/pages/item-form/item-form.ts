@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../../shared/services/data.service';
 import { Item } from '../../shared/models/item';
@@ -41,28 +46,36 @@ export class ItemFormComponent implements OnInit {
   }
 
   loadItem(id: number): void {
-    const item = this.dataService.getItemById(id);
-    if (item) {
-      this.itemForm.patchValue({
-        title: item.title,
-        description: item.description,
-        imageUrl: item.imageUrl,
-        featured: item.featured
-      });
-    }
+    this.dataService.getItemById(id).subscribe(item => {
+      if (item) {
+        this.itemForm.patchValue({
+          title: item.title,
+          description: item.description,
+          imageUrl: item.imageUrl,
+          featured: item.featured
+        });
+      }
+    });
   }
 
   onSubmit(): void {
-    if (this.itemForm.valid) {
-      const formValue = this.itemForm.value;
-      if (this.isEditMode && this.itemId !== null) {
-        this.dataService.updateItem(this.itemId, formValue);
-      } else {
-        this.dataService.addItem(formValue);
-      }
-      this.router.navigate(['/']);
-    } else {
+    if (this.itemForm.invalid) {
       this.markFormGroupTouched(this.itemForm);
+      return;
+    }
+
+    const formValue: Omit<Item, 'id'> = this.itemForm.value;
+
+    if (this.isEditMode && this.itemId !== null) {
+      this.dataService.updateItem(this.itemId, formValue).subscribe({
+        next: () => this.router.navigate(['/']),
+        error: () => alert('Сталася помилка під час оновлення поради')
+      });
+    } else {
+      this.dataService.addItem(formValue).subscribe({
+        next: () => this.router.navigate(['/']),
+        error: () => alert('Сталася помилка під час створення поради')
+      });
     }
   }
 
