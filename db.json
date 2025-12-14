@@ -17,6 +17,24 @@
       "password": "tima2006",
       "username": "tima",
       "id": 1765282522800
+    },
+    {
+      "email": "newuser@example.com",
+      "password": "password123",
+      "username": "newuser",
+      "id": 1765294272025
+    },
+    {
+      "email": "newuser@example.com",
+      "password": "password123",
+      "username": "newuser",
+      "id": 1765294306065
+    },
+    {
+      "email": "newuser@example.com",
+      "password": "password123",
+      "username": "newuser",
+      "id": 1765413785407
     }
   ],
   "items": [

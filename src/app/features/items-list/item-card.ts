@@ -1,8 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
-import { Item } from '../../shared/models/item';
+import type { Item } from '../../shared/models/item';
 import { TruncateDescriptionPipe } from '../../shared/pipes/truncate-description.pipe';
 import { HoverHighlightDirective } from '../../shared/directives/hover-highlight.directive';
 
@@ -18,8 +17,8 @@ export class ItemCardComponent {
   @Output() selected = new EventEmitter<Item>();
 
   select(): void {
-    if (this.item) {
-      this.selected.emit(this.item);
-    }
+    this.selected.emit(this.item);
   }
+
+  trackByProp = (prop: string) => (item: Item) => item[prop as keyof Item];
 }
